@@ -294,6 +294,14 @@
                 z-index:1;
             }
 
+            .atom{
+                position:relative;
+            }
+
+            .orbit{
+                position:absolute;
+            }
+
             .electron-atom{
                 position:absolute;
                 width:10px;
@@ -338,6 +346,10 @@
             /* WRAPPER */
             .bowl-wrapper{
                 text-align:center;
+            }
+
+            .electron-atom{
+                transition: all 0.3s ease;
             }
 
             /* MANGKOK */
@@ -429,6 +441,15 @@
                 opacity: 0.8;
                 pointer-events:none;
                 cursor:not-allowed;
+            }
+
+            .orbit{
+                animation: spin 10s linear infinite;
+            }
+
+            @keyframes spin{
+                from{ transform: rotate(0deg); }
+                to{ transform: rotate(360deg); }
             }
 
         </style>
@@ -537,6 +558,9 @@
     </div>
 
         <script>
+        let electronShells = [0,0,0] // orbital 1,2,3
+        const kapasitas = [2,8,8]
+
         const unsurData = {
             1:{symbol:"H", name:"Hidrogen"},
             2:{symbol:"He", name:"Helium"},
@@ -559,7 +583,7 @@
         }
         const atom = document.getElementById("atom")
         const electronLayer = document.getElementById("electronLayer")
-        let mode="null"
+        let mode=null
 
         let touchItem = null
 
@@ -763,41 +787,49 @@
 
         function renderElectron(eCount){
 
-            electronLayer.innerHTML = ""
+        electronLayer.innerHTML = ""
 
-            let kapasitas = [2,8,8]
-            let radius = [60,100,140]
+        const orbits = [
+            document.querySelector(".o1"),
+            document.querySelector(".o2"),
+            document.querySelector(".o3")
+        ]
 
-            let rect = atom.getBoundingClientRect()
-            let centerX = rect.width / 2
-            let centerY = rect.height / 2
+        let sisa = eCount
 
-            let sisa = eCount
+        for(let i=0;i<3;i++){
 
-            for(let i=0;i<3;i++){
+            let isi = Math.min(sisa, kapasitas[i])
+            electronShells[i] = isi
 
-                let isi = Math.min(sisa, kapasitas[i])
+            let orbit = orbits[i]
 
-                for(let j=0;j<isi;j++){
+            let centerX = orbit.offsetLeft + orbit.offsetWidth / 2
+            let centerY = orbit.offsetTop + orbit.offsetHeight / 2
 
-                    let sudut = (j / isi) * 2 * Math.PI
+            let radius = (orbit.offsetWidth / 2) - 2
 
-                    let x = centerX + radius[i] * Math.cos(sudut)
-                    let y = centerY + radius[i] * Math.sin(sudut)
+            for(let j=0;j<isi;j++){
 
-                    let el = document.createElement("div")
-                    el.className = "electron-atom"
+                let sudut = (j / isi) * 2 * Math.PI
 
-                    el.style.left = x + "px"
-                    el.style.top = y + "px"
+                let x = centerX + radius * Math.cos(sudut)
+                let y = centerY + radius * Math.sin(sudut)
 
-                    electronLayer.appendChild(el)
-                }
+                let el = document.createElement("div")
+                el.className = "electron-atom"
 
-                sisa -= isi
-                if(sisa <= 0) break
+                el.style.left = x + "px"
+                el.style.top = y + "px"
+
+                electronLayer.appendChild(el)
             }
+
+            sisa -= isi
+            if(sisa <= 0) break
         }
+    }        
+        
         /* ================= DRAG DROP ================= */
         atom.ondragover=e=>e.preventDefault()
 
@@ -822,7 +854,63 @@
             }
 
             if(type === "electron-bowl"){
-                inputE.value++ // 🔥 FIX DI SINI
+
+                let rect = atom.getBoundingClientRect()
+
+                let dropX = event.clientX - rect.left
+                let dropY = event.clientY - rect.top
+
+                let centerX = rect.width / 2
+                let centerY = rect.height / 2
+
+                let dx = dropX - centerX
+                let dy = dropY - centerY
+
+                let jarak = Math.sqrt(dx*dx + dy*dy)
+
+                // 🔥 AREA DIPERLUAS (biar gampang)
+                let orbitIndex = 0
+                if(jarak < 90) orbitIndex = 0
+                else if(jarak < 160) orbitIndex = 1
+                else orbitIndex = 2
+
+                // 🔥 VALIDASI BOHR
+                if(electronShells[orbitIndex] >= kapasitas[orbitIndex]){
+                    return
+                }
+
+                for(let i=0;i<orbitIndex;i++){
+                    if(electronShells[i] < kapasitas[i]){
+                        return
+                    }
+                }
+
+                // ===============================
+                // 🔥 SNAP KE GARIS ORBITAL (INI BAGIAN PENTING)
+                // ===============================
+                let orbit = document.querySelectorAll(".orbit")[orbitIndex]
+
+                let oCenterX = orbit.offsetLeft + orbit.offsetWidth / 2
+                let oCenterY = orbit.offsetTop + orbit.offsetHeight / 2
+
+                let radius = (orbit.offsetWidth / 2) - 2
+
+                let sudut = Math.atan2(dropY - oCenterY, dropX - oCenterX)
+
+                let snapX = oCenterX + radius * Math.cos(sudut)
+                let snapY = oCenterY + radius * Math.sin(sudut)
+
+                // tambah ke data
+                electronShells[orbitIndex]++
+                e.value = electronShells.reduce((a,b)=>a+b,0)
+
+                // render langsung posisi jatuh (biar terasa real-time)
+                let el = document.createElement("div")
+                el.className = "electron-atom"
+                el.style.left = snapX + "px"
+                el.style.top = snapY + "px"
+
+                electronLayer.appendChild(el)
             }
 
             if(window.draggedElement){
