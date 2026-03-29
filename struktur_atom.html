@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -798,4 +799,806 @@
         <script src="latihan_materi1.js">
         </script>
     </body>
+=======
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+        <title>Materi</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: 'Poppins', sans-serif;
+            }
+
+            /* NAVBAR */
+            .navbar {
+                display: flex;
+                align-items: center;
+                padding: 15px, 30px;
+                background: linear-gradient(135deg, #0f2a44, #1c4f80);
+                color: white;
+                position: relative;
+                width: 100%;
+                border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+                position: relative;
+            }
+
+            .navbar::after{
+                content: "";
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                height: 3px;
+                background: white;
+                width: 0;
+                animation: lineGrow 2s forwards;
+            }
+
+            @keyframes lineGrow{
+                form{width:0}
+                to{width: 100%}
+            }
+
+            html, body {
+                height: 100%;
+            }
+            body {
+                background-color: #dbe3ef;
+                background-size: cover;
+                background-attachment: fixed;
+                height: 100hv;
+                overflow: hidden;
+                flex-direction: column;
+                display: flex;
+            }
+            header {
+                background-color: #1f4a85;
+                display: flex;
+                margin: 0;
+                padding: 0;
+                flex: 0 0 auto;
+                align-items: center;
+            }
+            .halaman {
+                align-items: center;
+                justify-content: right;
+                display: flex;
+            }
+            .logo {
+                width: 30%;
+                align-items: center;
+            }
+            .logo img{
+                width: 20%;
+            }
+            .nama {
+                padding: 5px;
+                font-family:Verdana, Geneva, Tahoma, sans-serif;
+                color:white;
+                font-size: 20px;
+                font-weight: 600;
+                margin: auto;
+                white-space: nowrap;
+                overflow: hidden;
+                width: 0;
+                animation: typing 3s steps(20, end) forwards, blink 0.8s infinite;
+            }
+
+            @keyframes typing{
+                form{width:0}
+                to{width: 70%;}
+            }
+
+            @keyframes blink{
+                50%{border-color: transparent;}
+            }
+
+            /* MENU */
+            .menu-container {
+                margin-left: auto;
+                text-align: right;
+                justify-content: right;
+            }
+            .menu {
+                display: flex;
+                gap: 20px;
+                margin: 15px;
+                list-style: none;
+                margin-left: auto;
+                z-index: 9999;
+            }
+
+            /* LINK */
+            .menu a{
+                text-decoration: none;
+                color: white;
+                padding: 8px 18px;
+                border-radius: 25px;
+                transition: 0.3s;
+            }
+            
+            /* HOVER */
+            .menu a:hover{
+                background: white;
+                color: #0f2a44;
+                transform: translateY(-2px);
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            }
+            /* HAMBURGER */
+            .menu-toggle {
+                display: none;
+                flex-direction: column;
+                cursor: pointer;
+                gap: 5px;
+            }
+
+            .menu-toggle span{
+                width: 25px;
+                height: 3px;
+                background: white;
+                border-radius: 2px;
+            }
+
+            
+            main {
+                background-color: white;
+                background-size: cover;
+                background-attachment: fixed;
+                border-radius: 20px;
+                border: 3px solid #1f4a85;
+                margin: 15px;
+                flex: 1 1 auto;
+                overflow-y: auto;
+                scroll-behavior:smooth ;
+                min-height: 0;
+                padding: 20px;
+                box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+                line-height: 1.7;
+                animation: fade 0.6s ease;
+            }
+            @keyframes fade{
+                form{
+                    opacity:0; 
+                    transform:translateY(20px);
+                }
+                to{
+                    opacity:1; 
+                    transform:translateY(0);
+                }
+            }
+            main::-webkit-scrollbar {
+                width: 0;
+            }
+            main::-webkit-scrollbar-thumb {
+                background: rgba(0, 0, 0, 0.3);
+                border-radius: 50px;
+            }
+            footer {
+                background-color: #1f4a85;
+                margin: -5px;
+                padding: 5px 0;
+                align-items: center;
+                text-align: center;
+                justify-content: center;
+                flex: 0 0 auto;
+            }
+            footer * {
+                margin-bottom: 0;
+                margin-top: 0;
+            }
+            .hakcipta {
+                margin: 0;
+            }
+            .sosial_media {
+                display: flex;
+                text-align: center;
+                justify-content: center;
+                margin: 0;
+            }
+            .sosial_media img {
+                width: 12%;
+                text-align: right;
+                cursor: pointer;
+                transition: 0.3s;
+            }
+            .sosial_media img:hover{
+                transform: scale(1.2);
+            }
+
+            .materi-container{
+                position:relative;
+                max-width:100%;
+                margin:auto;
+                background:white;
+                padding:0;
+                margin: 0;
+                padding-top: 30px;
+            }
+
+            /* tombol daftar isi */
+
+            #tocBtn{
+                position:fixed;
+                top:75px;
+                left:15px;
+                width:80px;
+                height:40px;
+                border-radius:20%;
+                border:none;
+                background-color:transparent;
+                color:#0f2a44;
+                border: 3px solid #0f2a44;
+                font-size:20px;
+                font-weight: 1000;
+                cursor:pointer;
+                font-size: small;
+                z-index: 1000;
+                padding: 0;
+            }
+            #tocBtn:hover {
+                background-color: #0f2a44;
+                color: white;
+            }
+
+            /* menu daftar isi */
+
+            #tocMenu{
+                position:fixed;
+                top:100pxpx;
+                left:10px;
+                width:200px;
+                background:white;
+                padding:15px;
+                border-radius:8px;
+                box-shadow:0 4px 10px rgba(0,0,0,0.2);
+                display:none;
+                font-size: small;
+                color: #0f2a44;
+            }
+
+            #tocMenu ul{
+                list-style:none;
+                padding:0;
+            }
+
+            #tocMenu li{
+                margin:8px 0;
+            }
+
+            #tocMenu a{
+                text-decoration:none;
+                color:#333;
+            }
+            #tocMenu a:hover{
+                background-color: #0f2a44;
+                color: white;
+            }
+            .judul{
+                text-align: center;
+            }
+            #pengertian, #partikel p{
+                text-align: justify;
+            }
+            #pengertian, #partikel ul{
+                list-style-position: inside;
+                padding-left: 0;
+            }
+            .p_in{
+                margin-left: 20px;
+            }
+
+            .navigationMateri{
+                display:flex;
+                justify-content:space-between;
+                margin-top:100px;
+                padding:20px 0;
+                border-top:2px solid #eee;
+            }
+
+            .navigationMateri a{
+                text-decoration:none;
+                background:#1f4a85;
+                color:white;
+                padding:12px 25px;
+                border-radius:8px;
+                font-weight:500;
+                transition:0.3s;
+            }
+
+            .navigationMateri a:hover{
+                background:#0f2a44;
+                transform:translateY(-2px);
+            }
+
+            .sub-judul{
+                border-bottom: 2px solid #0f2a44;
+                color: #0f2a44;
+                background: transparent #0f2a44;
+                border-top: 2px solid #0f2a44;
+            }
+
+            /* LATIHAN 1 */
+            #startQuiz{
+                background:linear-gradient(135deg,#1e88e5,#004aad);
+                color:white;
+                padding:15px;
+                border:none;
+                border-radius:30px;
+                font-size:16px;
+                cursor:pointer;
+            }
+
+            .modal{
+                position:fixed;
+                top:0;
+                left:0;
+                width:100%;
+                height:100%;
+                background:rgba(0,0,0,0.5);
+                display:flex;
+                justify-content:center;
+                align-items:center;
+            }
+
+            .modalContent{
+                background:white;
+                width:85%;
+                max-width:500px;
+                padding:30px;
+                border-radius:15px;
+                position:relative;
+            }
+
+            .closeBtn{
+                position:absolute;
+                top:10px;
+                right:10px;
+                background:red;
+                color:white;
+                border:none;
+                border-radius:50%;
+                width:30px;
+                height:30px;
+                cursor:pointer;
+            }
+
+            .hidden{
+                display:none;
+            }
+
+            .option{
+                display:block;
+                padding:12px;
+                margin:10px 0;
+                background:#eef4ff;
+                border-radius:8px;
+                cursor:pointer;
+                transition:0.2s;
+                position:relative;
+            }
+
+            .option:hover{
+                background:#d6e4ff;
+                transform:translateX(4px);
+            }
+
+            button{
+                padding:10px 20px;
+                border:none;
+                border-radius:20px;
+                background:#1e88e5;
+                color:white;
+                cursor:pointer;
+                transition:0.3s;
+            }
+
+            button:hover{
+                background:#1565c0;
+                transform:scale(1.05);
+                box-shadow:0 4px 10px rgba(0,0,0,0.2);
+            }
+
+            .selected{
+                background:#cfe2ff;
+                border:2px solid #1e88e5;
+                font-weight:bold;
+            }
+
+            .selected::after{
+                content:"✓";
+                position:absolute;
+                right:15px;
+                font-weight:bold;
+                color:#1e88e5;
+            }
+
+            #scoreText{
+                font-size:40px;
+            }
+
+            .pass{
+                color:#2ecc71;
+            }
+
+            .fail{
+                color:#e74c3c;
+            }
+
+            #numberGrid{
+                display:flex;
+                flex-wrap:wrap;
+                gap:10px;
+                justify-content:center;
+                text-align: center;
+                margin-top:20px;
+            }
+
+            .numberBox{
+                width:50px;
+                height:50px;
+                line-height:50px;
+                border-radius:10px;
+                color:white;
+                font-weight:bold;
+                cursor:pointer;
+                transition:0.25s;
+            }
+
+            .numberBox:hover{
+                transform:scale(1.1);
+                box-shadow:0 4px 10px rgba(0,0,0,0.25);
+            }
+
+            .numberBox.active{
+                outline:4px solid #1e88e5;
+                transform:scale(1.12);
+            }
+
+            .correct{
+                background:#2ecc71;
+            }
+
+            .wrong{
+                background:#e74c3c;
+            }
+
+            #explanationBox{
+                margin-top:20px;
+                padding:15px;
+                background:#f5f7ff;
+                border-radius:10px;
+            }
+
+            /* LATIHAN 2 */
+            #startQuiz1{
+                background:linear-gradient(135deg,#1e88e5,#004aad);
+                color:white;
+                padding:15px;
+                border:none;
+                border-radius:30px;
+                font-size:16px;
+                cursor:pointer;
+            }
+
+            #scoreText1{
+                font-size:40px;
+            }
+
+
+            #numberGrid1{
+                display:flex;
+                flex-wrap:wrap;
+                gap:10px;
+                justify-content:center;
+                text-align: center;
+                margin-top:20px;
+            }
+
+            #explanationBox1{
+                margin-top:20px;
+                padding:15px;
+                background:#f5f7ff;
+                border-radius:10px;
+            }
+
+            /* VIDEO */
+            .video-item {
+                width: 250px;
+                cursor: pointer;
+                margin: 10px;
+                text-align: center;
+                align-items: center;
+                border-radius: 10px;
+                transition: 0.3s;
+                justify-content: center;
+                display: flex;
+                flex-wrap: wrap;
+            }
+
+            .video-item:hover {
+                transform: scale(1.05);
+            }
+            .video1{
+                text-align: center;
+                justify-content: center;
+                display: flex;
+            }
+            /* Modal */
+            .popup {
+                display: none;
+                position: fixed;
+                z-index: 999;
+                padding-top: 50px;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0,0,0,0.9);
+                text-align: center;
+            }
+
+            /* Konten di dalam modal */
+            .popup-content img,
+            .popup-content video {
+                display: block;
+                margin: auto;
+                max-width: 90%;
+                max-height: 80vh;
+            }
+
+            /* Tombol close */
+            .close {
+                position: absolute;
+                top: 20px;
+                right: 40px;
+                color: white;
+                font-size: 30px;
+                cursor: pointer;
+            }
+
+            .video2{
+                text-align: center;
+                justify-content: center;
+                display: flex;
+            }
+
+
+            
+            /* RESPONSIVE */
+            @media (max-width: 768px){
+                .menu {
+                    position: absolute;
+                    top: 70px;
+                    right: 0;
+                    background: #0f2a44;
+                    width: 220px;
+                    flex-direction: column;
+                    text-align: center;
+                    padding: 20px;
+                    display: none;
+                    border-radius: 0 0 10px 10px;
+                }
+
+                .menu li{
+                    margin: 10px 0;
+                }
+
+                .menu-toggle{
+                    display: flex;
+                }
+
+                .menu.active {
+                    display: flex;
+                }
+                #tocBtn{
+                    top: 65px;
+                }
+                .navigationMateri a{
+                    font-size: small;
+                }
+                .sosial_media img{
+                    width: 20%;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <nav class="navbar">
+            <div class="halaman">
+                <div class="logo">
+                    <img src="icon-simulasi.png" alt="">
+                </div>
+                <div class="nama">
+                    <h3>MATERI</h3>
+                </div>
+            </div>
+            <div class="menu-toggle" id="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="menu-container">
+                <ul class="menu" id="nav-menu">
+                    <li><a href="Home.html">Home</a></li>
+                    <li><a href="tujuan_pembelajaran.html">Capaian</a></li>
+                    <li><a href="materi.html">Materi</a></li>
+                    <li><a href="simulasi.html">Simulasi</a></li>
+                    <li><a href="Evaluasi.html">Evaluasi</a></li>
+                </ul>
+            </div>
+            </nav>
+        </header>
+        <main>
+            <div class="materi-container">
+
+                <button id="tocBtn">Daftar Isi</button>
+
+                <div id="tocMenu">
+                    <h3>Daftar Isi</h3>
+
+                    <ul>
+                    <li><a href="#pengertian">Pengertian</a></li>
+                    <li><a href="#partikel">Partikel Penyusun Atom</a></li>
+                    </ul>
+
+                </div>
+                <div class="judul">
+                    <h2>Struktur Kimia</h2>
+                </div>
+                <section id="pengertian">
+                    <div class="sub-judul"><h3>Pengertian atom</h3></div>
+                    <div class="video1">
+                        <video class="video-item" width="200">
+                            <source src="video_struktur-atom.mp4" type="video/mp4" style="text-align: center;">
+                        </video>
+                    </div>
+                    <div id="popup" class="popup">
+                    <span class="close">&times;</span>
+                    <div id="popupContent"></div>
+                    </div>
+                    <p>Hal yang paling dasar dalam mempelajari struktur atom adalah mengetahui apa itu atom. Apakah kamu sebelumnya sudah mendengar kata ‘Atom’? Hal apa yang ada dipikiranmu ketika mendengar atom? Atom merupakan unit terkecil dari suatu unsur yang tidak dapat dibagi lagi, namun masih memiliki sifat yang sama dengan unsur tersebut. Setiap unsur yang berbeda memiliki atom yang berbeda pula. </p>
+                    <p>Atom pertama kali diperkenalkan oleh seorang filosof asal Yunani yaitu Demokritus (460 – 730 SM). Menurutnya suatu benda jika dipotong secara terus-menerus maka akan terdapat bagian yang tidak dapat dibagi lagi, bagian tersebut yang dinamakan dengan atom.
+                    Untuk mempermudah pemahaman kamu terkait atom, perhatikan contoh berikut. Menurut kamu suatu molekul O<sub>2</sub> memiliki berapa unsur dan berapa atom? 
+                    </p>
+                    <p>O<sub>2</sub> terdiri dari :</p>
+                    <ul>
+                        <li> jenis unsur yaitu O (Oksigen)</li>
+                        <li>2 atom oksigen <i>(karena jumlah O pada O<sub>2</sub> adalah 2)</i></li>
+                    </ul>
+                    <p>Contoh lain, berapa unsur dan atom yang terdapat pada molekul H<sub>2</sub>SO<sub>4</sub>?
+                    <br>H<sub>2</sub>SO<sub>4</sub> terdiri dari:
+                    <p>
+                    <ul>
+                        <li>3 jenis unsur, yaitu H (Hidrogen), S (Sulfur), dan O (Oksigen)</li>
+                        <li>2 atom Hidrogen, 1 atom Sulfur, dan 4 atom Oksigen</li>
+                    </ul>
+                    <p>Bagaimana? Apakah kamu sudah paham dengan atom?</p>
+
+                    <button id="startQuiz">Latihan Soal</button>
+
+                    <div id="quizModal" class="modal hidden">
+
+                        <div class="modalContent">
+
+                            <button id="closeModal" class="closeBtn">✖</button>
+
+                            <div id="quizPage">
+                                <div id="question"></div>
+                                <div id="options"></div>
+
+                                <div class="navBtn">
+                                    <button id="nextBtn" disabled>Selanjutnya</button>
+                                    <button id="finishBtn" class="hidden">Selesai</button>
+                                </div>
+                            </div>
+
+                            <div id="scorePage" class="hidden">
+                                <h2 id="scoreText"></h2>
+                                <p id="scoreMessage"></p>
+                                <button id="reviewBtn">Lihat Pembahasan</button>
+                            </div>
+
+                            <div id="reviewPage" class="hidden">
+                                <h3>Klik nomor soal</h3>
+
+                                <div id="numberGrid"></div>
+
+                                <div id="explanationBox"></div>
+                            </div>
+
+                        </div>
+                    </div>
+                <!--Materi ke-2 -->
+                </section>
+                <br> <br>
+                <section id="partikel">
+                    <div class="sub-judul"><h3>Partikel Penyusun Atom</h3></div>
+                    <div class="video2">
+                        <video class="video-item" width="200">
+                            <source src="struktur_atom.mp4" type="video/mp4" style="text-align: center;">
+                        </video>
+                    </div>
+                    <p style="color: #1c4f80; font-size: smaller; text-align: center;"><i>klik untuk menonton video</i></p>
+                    <p>Berdasarkan perkembangannya banyak sekali teori-teori yang dikemukakan oleh para ahli terkait dengan struktur atom. Hasil analisis para ahli menyimpulkan bahwa atom tersusun atas 3 partikel, yaitu proton, neutron, dan elektron. Proton merupakan inti atom yang bermuatan positif, neutron juga terdapat dalam inti atom namun bermuatan netral, sedangkan elektron adalah partikel yang mengelilingi inti atom dan bermuatan negatif. Berikut adalah penjelasan dari masing-masing partikel.</p>
+                    <ul>
+                        <li>
+                            <strong>Elektron</strong>
+                            <br><p class="p_in">Elektron pertama kali ditemukan oleh J.J Thomson melalui percobaan sinar katoda, serta muatan electron-nya ditemukan oleh Robert Milikan melalui percobaan tetesan halus minyak. Berdasarkan kedua percobaan tersebut diperoleh bahwa electron bermuatan -1 dengan massa 0 sma (Satuan Massa Atom), sehingga dilambangkan dengan <sup>0</sup><sub>-1</sub>e</p>
+                        </li>
+                        <li>
+                            <strong>Proton</strong>
+                            <br><p class="p_in">Proton  pertama kali ditemukan oleh Eugene Goldstein melalui percobaan sinar katode yang telah dimodifikasi. Berdasarkan percobaan tersebut ditemukan bahwa proton memiliki muatan +1 dengan massa 1 sma (Satuan Massa Atom), sehingga dilambanhgkan <sup>1</sup><sub>1</sub>p</p>
+                        </li>
+                        <li>
+                            <strong>Neutron</strong>
+                            <br><p class="p_in">Neutron pertama kali ditemukan oleh James Chadwick melalui percobaan atom berilium yang ditembaki dengan sinar alpa (𝛼). Berdasarkan 	percobaan tersebut diperoleh bahwa partikel yang menimbulkan radiasi berdaya tinggi tidak memiliki muatan atau bersifat netral, dengan massa yang hamper sama dengan proton yaitu 1 sma. Sehingga, neutron bersifat netral atau muatan 0. </p>
+                        </li>
+                    </ul>
+
+                    <div id="popup" class="popup">
+                        <span class="close">&times;</span>
+                        <div class="popup-content" id="popupContent"></div>
+                    </div>
+
+                    <button id="startQuiz1">Latihan Soal</button>
+                    <div id="quizModal1" class="modal hidden">
+                        <div class="modalContent">
+                            <button id="closeModal1" class="closeBtn">✖</button>
+                            <div id="quizPage1">
+                                <div id="question1"></div>
+                                <div id="options1"></div>
+                                <div class="navBtn">
+                                    <button id="nextBtn1" disabled>Selanjutnya</button>
+                                    <button id="finishBtn1" class="hidden">Selesai</button>
+                                </div>
+                            </div>
+
+                            <div id="scorePage1" class="hidden">
+                                <h2 id="scoreText1"></h2>
+                                <p id="scoreMessage1"></p>
+                                <button id="reviewBtn1">Lihat Pembahasan</button>
+                            </div>
+
+                            <div id="reviewPage1" class="hidden">
+                                <h3>Klik nomor soal</h3>
+                                <div id="numberGrid1"></div>
+                                <div id="explanationBox1"></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <div class="navigationMateri">
+                <a href="materi.html" class="prev">
+                    ⟵ Kembali
+                </a>
+
+                <a href="perkembangan_atom.html" class="next">
+                    Materi Selanjutnya ⟶
+                </a>
+            </div>
+        </main>
+        <footer>
+        <div class="sosial_media">
+            <a href="mailto:dilapadilah414@gmail.com"><img src="icon-gmail.png" alt=""></a>
+            <a href="https://github.com/dila-padilah" target="_blank"><img src="icon-github.png" alt=""></a>
+            <a href="https://www.linkedin.com/in/dila-padilah" target="_blank"><img src="icon-linkdeln.png" alt=""></a>
+            <a href="https://x.com/DilaPadilah414" target="_blank"><img src="icon-twitter.png" alt=""></a>
+            <a href="https://www.tiktok.com/@pojok.belajar_" target="_blank"><img src="icon-tiktok.png" alt=""></a>
+        </div>
+            <div class="hakcipta">
+                <p>Copyright © 2026 Dila Padilah</p>
+            </div>
+        </footer>
+        <script src="latihan_materi1.js">
+        </script>
+    </body>
+>>>>>>> d366866b6d246d9d7e1079085a0cf87cfa57992f
 </html>

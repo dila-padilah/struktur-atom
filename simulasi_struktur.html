@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="id">
     <head>
@@ -891,4 +892,836 @@
         })
         </script>
     </body>
+=======
+<!DOCTYPE html>
+<html lang="id">
+    <head>
+    <meta charset="UTF-8">
+    <title>Simulasi Atom Interaktif</title>
+
+        <style>
+            body{
+                font-family:'Segoe UI';
+                margin:0;
+                display:flex;
+                justify-content:space-between;
+                padding:5px;
+                background:linear-gradient(to right,#eef2ff,#f8fafc);
+                overflow:hidden;
+            }
+
+            /* WRAPPER */
+            .viewport{
+                width:100vw;
+                height:100vh;
+                display:flex;
+                justify-content:center;
+                align-items:flex-start;
+                overflow:hidden;
+            }
+
+            /* APP UTAMA */
+            .app{
+                width:1200px;
+                transform-origin: center center;
+            }
+
+            .app > *{
+                width:100%;
+            }
+
+            /* PENTING BANGET */
+            .app{
+                display:flex;
+                justify-content:space-between;
+                gap: 20px;
+                padding: 10px;
+            }
+
+            /* pastikan tidak turun */
+            .left{
+                width:40%;
+                flex-shrink:0;
+            }
+
+            .right{
+                width:60%;
+                flex-shrink:0;
+            }
+
+            .viewport{
+                align-items:flex-start; /* jangan center vertikal */
+            }
+
+            /* BUTTON JANGAN FIXED */
+            .buttons{
+                position:absolute;
+                bottom:10px;
+                left:50%;
+                transform:translateX(-50%);
+            }
+
+            /* ================= LEFT ================= */
+            .left{width:35%}
+
+            /* LAMBANG */
+            /* CONTAINER */
+            .symbol-box{
+                position:relative;
+                width:140px;
+                height:140px;
+                background:linear-gradient(135deg,#dbeafe,#bfdbfe);
+                border-radius:20px;
+                box-shadow:0 10px 25px rgba(0,0,0,0.15);
+                display:flex;
+                justify-content:center;
+                align-items:center;
+                margin-bottom:30px;
+            }
+
+            /* HURUF UNSUR */
+            .element{
+                font-size:60px;
+                font-weight:bold;
+                color:#1e3a8a;
+            }
+
+            /* INPUT UMUM */
+            .symbol-box input{
+                position:absolute;
+                width:45px;
+                text-align:center;
+                border:none;
+                background:white;
+                border-radius:8px;
+                padding:3px;
+                font-size:14px;
+                box-shadow:0 2px 5px rgba(0,0,0,0.1);
+            }
+
+            /* BOX UNSUR */
+            .unsur-box{
+                width:100px;
+                height:100px;
+                background:linear-gradient(135deg,#dcfce7,#bbf7d0);
+                border-radius:15px;
+                display:flex;
+                flex-direction:column;
+                justify-content:center;
+                align-items:center;
+                box-shadow:0 8px 20px rgba(0,0,0,0.15);
+            }
+
+            /* SIMBOL */
+            .unsur-symbol{
+                font-size:30px;
+                font-weight:bold;
+                color:#166534;
+            }
+
+            /* NAMA */
+            .unsur-name{
+                font-size:14px;
+                color:#14532d;
+            }
+
+            /* POSISI */
+            .mass{
+                top:8px;
+                left:8px;
+            }
+
+            .atomic{
+                bottom:8px;
+                left:8px;
+            }
+
+            .charge{
+                top:8px;
+                right:8px;
+            }
+
+            /* HOVER HALUS */
+            .symbol-box:hover{
+                transform:translateY(-5px);
+                transition:0.3s;
+            }
+
+
+
+            /* CARD UTAMA */
+            .particle-card{
+                background:linear-gradient(135deg,#eef2ff,#dbeafe);
+                padding:20px;
+                border-radius:20px;
+                box-shadow:0 10px 25px rgba(0,0,0,0.15);
+            }
+
+            /* JUDUL */
+            .title{
+                font-size:18px;
+                font-weight:600;
+                color:#1e3a8a;
+                margin-bottom:15px;
+                text-align:center;
+            }
+
+            /* GRID */
+            .particle-grid{
+                display:grid;
+                grid-template-columns:1fr;
+                gap:12px;
+            }
+
+            /* ITEM */
+            .particle-item{
+                display:flex;
+                justify-content:space-between;
+                align-items:center;
+                padding:10px 15px;
+                border-radius:12px;
+                background:white;
+                box-shadow:0 3px 10px rgba(0,0,0,0.1);
+                transition:0.3s;
+            }
+
+            /* HOVER */
+            .particle-item:hover{
+                transform:translateY(-3px);
+            }
+
+            /* INPUT */
+            .particle-item input{
+                width:70px;
+                padding:5px;
+                border-radius:8px;
+                border:none;
+                text-align:center;
+                background:#f1f5f9;
+            }
+
+            /* CARD UTAMA */
+            #modeText{
+                background:linear-gradient(135deg,#eef2ff,#dbeafe);
+                padding:20px;
+                border-radius:20px;
+                box-shadow:0 10px 25px rgba(0,0,0,0.15);
+                color: #374151;
+                font-weight: 1000;
+            }
+            /* WARNA KHUSUS */
+            .proton-item{
+                border-left:5px solid #ef4444;
+            }
+
+            .neutron-item{
+                border-left:5px solid #9ca3af;
+            }
+
+            .electron-item{
+                border-left:5px solid #2563eb;
+            }
+
+            /* ================= RIGHT ================= */
+            .right{
+                width:60%;
+                text-align:center;
+            }
+
+            .atom{
+                width:320px;
+                height:320px;
+                margin:auto;
+                position:relative;
+            }
+
+            .atom{
+                position:relative;
+            }
+
+            .electron-atom{
+                position:absolute;
+                transform:translate(-50%, -50%); /* 🔥 penting */
+            }
+
+            .core{
+                width:80px;
+                height:80px;
+                background:#1e3a8a;
+                border-radius:50%;
+                position:absolute;
+                top:50%;left:50%;
+                transform:translate(-50%,-50%);
+                display:flex;
+                flex-wrap:wrap;
+                justify-content:center;
+                align-items:center;
+            }
+
+            .electron-bowl{ background:#2563eb; }
+            .electron-atom{
+                background:#2563eb;
+                position:absolute;
+                width:10px;
+                height:10px;
+                border-radius:50%;
+            }
+
+            #electronLayer{
+                position:absolute;
+                width:100%;
+                height:100%;
+                top:0;
+                left:0;
+                z-index:9999; /* 🔥 PALING PENTING */
+            }
+
+            .core{
+                z-index:2;
+            }
+
+            .orbit{
+                z-index:1;
+            }
+
+            .electron-atom{
+                position:absolute;
+                width:10px;
+                height:10px;
+                background:#2563eb;
+                border-radius:50%;
+                transform:translate(-50%, -50%);
+            }
+
+            .orbit{
+                position:absolute;
+                border:1.5px dashed #555;
+                border-radius:50%;
+            }
+
+            .o1{width:120px;height:120px;top:100px;left:100px;}
+            .o2{width:200px;height:200px;top:60px;left:60px;}
+            .o3{width:280px;height:280px;top:20px;left:20px;}
+
+            .particle{
+                width:12px;height:12px;
+                border-radius:50%;
+                margin:1px;
+            }
+
+            .proton{background:red;}
+            .neutron{background:#aaa;}
+            .electron{background:#2563eb; position:absolute;}
+
+            /* MANGKOK */
+            /* CONTAINER */
+            .bowl-container{
+                margin-top:30px;
+                display:flex;
+                justify-content:center;
+                gap:30px;
+            }
+
+            /* WRAPPER */
+            .bowl-wrapper{
+                text-align:center;
+            }
+
+            /* MANGKOK */
+            .bowl{
+                width:120px;
+                height:80px;
+                border-radius:0 0 100px 100px;
+                background:linear-gradient(to bottom,#e5e7eb,#9ca3af);
+                border:2px solid #555;
+                box-shadow:
+                    inset 0 -10px 15px rgba(0,0,0,0.2),
+                    0 8px 15px rgba(0,0,0,0.2);
+                overflow:auto;
+                padding:8px;
+            }
+
+            /* LABEL */
+            .label{
+                margin-top:8px;
+                font-weight:600;
+                color:#374151;
+            }
+
+            /* PARTIKEL DI DALAM */
+            .small{
+                width:10px;
+                height:10px;
+                margin:2px;
+                display:inline-block;
+                border-radius:50%;
+                cursor:grab;
+            }
+
+            /* WARNA PARTIKEL */
+            .proton{ background:#ef4444; }
+            .neutron{ background:#9ca3af; }
+            .electron-bowl{ background:#2563eb; }
+
+            /* BUTTON */
+            .buttons{
+                position:fixed;
+                bottom:20px;
+                left:50%;
+                transform:translateX(-50%);
+                display:flex;
+                gap:10px;
+            }
+
+            /* BUTTON UMUM */
+            button{
+                padding:10px 20px;
+                border:none;
+                border-radius:12px;
+                background:linear-gradient(135deg,#2563eb,#1e40af);
+                color:white;
+                font-weight:500;
+                cursor:pointer;
+                transition: all 0.3s ease;
+            }
+
+            /* HOVER */
+            button:hover{
+                transform:translateY(-3px);
+                box-shadow:0 8px 20px rgba(0,0,0,0.2);
+            }
+
+            /* ACTIVE (klik) */
+            button:active{
+                transform:scale(0.95);
+                box-shadow:0 3px 10px rgba(0,0,0,0.2);
+            }
+
+            /* MODE AKTIF */
+            button.active{
+                background:linear-gradient(135deg,#22c55e,#15803d);
+                box-shadow:0 0 10px rgba(34,197,94,0.7);
+            }
+
+            /* TOMBOL KELUAR */
+            .btn-exit{
+                background:linear-gradient(135deg,#ef4444,#b91c1c);
+            }
+
+            .btn-exit:hover{
+                box-shadow:0 0 12px rgba(239,68,68,0.8);
+            }
+
+            .disabled{
+                opacity: 0.8;
+                pointer-events:none;
+                cursor:not-allowed;
+            }
+
+        </style>
+    </head>
+
+    <body>
+        <div class="viewport">
+            <div class="app">
+                <!-- LEFT -->
+                <div class="left">
+
+                <div style="display:flex; align-items:center; gap:15px;">
+
+                    <div class="symbol-box">
+
+                        <input id="mass" class="mass" type="number" placeholder="A">
+                        <input id="charge" class="charge" type="text" placeholder="+">
+
+                        <div class="element" id="symbolElement">X</div>
+
+                        <input id="atomic" class="atomic" type="number" placeholder="Z">
+
+                    </div>
+
+                    <!-- KOLOM UNSUR -->
+                    <div class="unsur-box">
+                        <div class="unsur-symbol" id="unsurSymbol">-</div>
+                        <div class="unsur-name" id="unsurName">Unsur</div>
+                    </div>
+
+                </div>
+
+                <div class="particle-card">
+
+                    <div class="title">Partikel Penyusun Atom</div>
+
+                    <div class="particle-grid">
+
+                        <div class="particle-item proton-item">
+                            <span>Proton</span>
+                            <input id="p" type="number">
+                        </div>
+
+                        <div class="particle-item neutron-item">
+                            <span>Neutron</span>
+                            <input id="n" type="number">
+                        </div>
+
+                        <div class="particle-item electron-item">
+                            <span>Elektron</span>
+                            <input id="e" type="number">
+                        </div>
+
+                    </div>
+
+                </div>
+                <br>
+                <br>
+                <div id="modeText" style="text-align:center; margin-bottom:10px;">
+                    Pilih mode terlebih dahulu
+                </div>
+
+                </div>
+
+                <!-- RIGHT -->
+                <div class="right">
+
+                <div class="atom" id="atom">
+                    <div id="electronLayer"></div> <!-- 🔥 WAJIB -->
+                    <div class="orbit o1"></div>
+                    <div class="orbit o2"></div>
+                    <div class="orbit o3"></div>
+                    <div class="core" id="core"></div>
+                </div>
+
+                <div class="bowl-container">
+
+                    <div class="bowl-wrapper">
+                        <div class="bowl" id="bP"></div>
+                        <div class="label">Proton</div>
+                    </div>
+
+                    <div class="bowl-wrapper">
+                        <div class="bowl" id="bN"></div>
+                        <div class="label">Neutron</div>
+                    </div>
+
+                    <div class="bowl-wrapper">
+                        <div class="bowl" id="bE"></div>
+                        <div class="label">Elektron</div>
+                    </div>
+
+                </div>
+
+                </div>
+            </div>
+
+
+        <!-- BUTTON -->
+        <div class="buttons">
+            <button id="btnNotasi" onclick="setMode('notasi')">Notasi</button>
+            <button id="btnPartikel" onclick="setMode('partikel')">Partikel</button>
+            <button id="btnStruktur" onclick="setMode('struktur')">Struktur</button>
+            <button class="btn-exit" onclick="exitApp()"><a href="simulasi.html" style="color: white; text-decoration: none;">Keluar</a></button>
+        </div>
+    </div>
+
+        <script>
+        const unsurData = {
+            1:{symbol:"H", name:"Hidrogen"},
+            2:{symbol:"He", name:"Helium"},
+            3:{symbol:"Li", name:"Litium"},
+            4:{symbol:"Be", name:"Berilium"},
+            5:{symbol:"B", name:"Boron"},
+            6:{symbol:"C", name:"Karbon"},
+            7:{symbol:"N", name:"Nitrogen"},
+            8:{symbol:"O", name:"Oksigen"},
+            9:{symbol:"F", name:"Fluorin"},
+            10:{symbol:"Ne", name:"Neon"},
+            11:{symbol:"Na", name:"Natrium"},
+            12:{symbol:"Mg", name:"Magnesium"},
+            13:{symbol:"Al", name:"Aluminium"},
+            14:{symbol:"Si", name:"Silikon"},
+            15:{symbol:"P", name:"Fosfor"},
+            16:{symbol:"S", name:"Sulfur"},
+            17:{symbol:"Cl", name:"Klorin"},
+            18:{symbol:"Ar", name:"Argon"}
+        }
+        const atom = document.getElementById("atom")
+        const electronLayer = document.getElementById("electronLayer")
+        let mode="null"
+
+        function scaleApp(){
+            const app = document.querySelector(".app")
+            const scale = Math.min(window.innerWidth / 1200, window.innerHeight / 800)
+
+            app.style.transform = "scale(" + scale + ")"
+        }
+
+        window.addEventListener("resize", scaleApp)
+        window.addEventListener("load", scaleApp)
+
+        function controlInput(){
+
+            let symbolBox = document.querySelector(".symbol-box")
+            let particleCard = document.querySelector(".particle-card")
+
+            // RESET dulu
+            symbolBox.classList.remove("disabled")
+            particleCard.classList.remove("disabled")
+
+            if(mode === null){
+                symbolBox.classList.add("disabled")
+                particleCard.classList.add("disabled")
+            }
+
+            else if(mode === "notasi"){
+                symbolBox.classList.remove("disabled")
+                particleCard.classList.add("disabled")
+            }
+
+            else if(mode === "partikel"){
+                particleCard.classList.remove("disabled")
+                symbolBox.classList.add("disabled")
+            }
+
+            else if(mode === "struktur"){
+                symbolBox.classList.add("disabled")
+                particleCard.classList.add("disabled")
+            }
+        }
+        /* ================= INIT BOWLS FIX ================= */
+        function init(){
+            for(let i=0;i<18;i++){
+                create("proton","bP")
+                create("neutron","bN")
+                create("electron-bowl","bE") // FIX
+            }
+        }
+
+
+
+        function create(type,parent){
+            let el=document.createElement("div")
+
+            if(type==="electron-bowl"){
+                el.className="small electron-bowl"
+            }else{
+                el.className="small "+type
+            }
+
+            el.draggable=true
+
+            el.ondragstart=e=>{
+            e.dataTransfer.setData("type",type)
+            window.draggedElement = el // simpan elemen
+        }
+
+            document.getElementById(parent).appendChild(el)
+        }
+        /* ================= MODE ================= */
+        function setMode(m){
+            mode = m
+
+            // tombol aktif
+            document.getElementById("modeText").innerText = "Mode: " + m
+            document.querySelectorAll(".buttons button").forEach(btn=>{
+                btn.classList.remove("active")
+            })
+
+            if(m==="notasi") document.getElementById("btnNotasi").classList.add("active")
+            if(m==="partikel") document.getElementById("btnPartikel").classList.add("active")
+            if(m==="struktur") document.getElementById("btnStruktur").classList.add("active")
+
+            // 🔥 kontrol input
+            controlInput()
+        }
+
+        /* ================= LOGIC ================= */
+        function updateUnsur(Z){
+
+            let data = unsurData[Z]
+
+            if(data){
+                document.getElementById("unsurSymbol").innerText = data.symbol
+                document.getElementById("unsurName").innerText = data.name
+                document.getElementById("symbolElement").innerText = data.symbol
+            }else{
+                document.getElementById("unsurSymbol").innerText = "-"
+                document.getElementById("unsurName").innerText = "Tidak ada"
+                document.getElementById("symbolElement").innerText = "X"
+            }
+        }
+
+        function updateNotasi(){
+
+            let Z = +atomic.value || 0
+            let A = +mass.value || 0
+            let chargeVal = parseMuatan(charge.value || "0")
+
+            let proton = Z
+            let electron = Z - chargeVal
+            let neutron = A - Z
+
+            // VALIDASI biar tidak minus
+            if(electron < 0) electron = 0
+            if(neutron < 0) neutron = 0
+
+            p.value = proton
+            e.value = electron
+            n.value = neutron
+
+            render(proton, neutron, electron)
+
+            updateUnsur(Z)
+        }
+
+        function updatePartikel(){
+
+            let proton = +p.value || 0
+            let neutron = +n.value || 0
+            let electron = +e.value || 0
+
+            // hitung muatan otomatis
+            let chargeVal = proton - electron
+
+            atomic.value = proton
+            mass.value = proton + neutron
+            charge.value = formatMuatan(chargeVal)
+
+            render(proton, neutron, electron)
+            updateUnsur(proton)
+        }
+
+        function formatMuatan(charge){
+            if(charge > 0){
+                return charge + "+"
+            }else if(charge < 0){
+                return Math.abs(charge) + "-"
+            }else{
+                return ""
+            }
+        }
+
+        function parseMuatan(val){
+            if(val.includes("+")){
+                return parseInt(val)
+            }else if(val.includes("-")){
+                return -parseInt(val)
+            }else{
+                return 0
+            }
+        }
+
+
+        /* ================= RENDER ================= */
+        function render(pCount,nCount,eCount){
+
+            core.innerHTML=""
+
+            for(let i=0;i<pCount;i++){
+                let el=document.createElement("div")
+                el.className="particle proton"
+                core.appendChild(el)
+            }
+
+            for(let i=0;i<nCount;i++){
+                let el=document.createElement("div")
+                el.className="particle neutron"
+                core.appendChild(el)
+            }
+
+            renderElectron(eCount)
+        }
+
+        function renderElectron(eCount){
+
+            electronLayer.innerHTML = ""
+
+            let kapasitas = [2,8,8]
+            let radius = [60,100,140]
+
+            let rect = atom.getBoundingClientRect()
+            let centerX = rect.width / 2
+            let centerY = rect.height / 2
+
+            let sisa = eCount
+
+            for(let i=0;i<3;i++){
+
+                let isi = Math.min(sisa, kapasitas[i])
+
+                for(let j=0;j<isi;j++){
+
+                    let sudut = (j / isi) * 2 * Math.PI
+
+                    let x = centerX + radius[i] * Math.cos(sudut)
+                    let y = centerY + radius[i] * Math.sin(sudut)
+
+                    let el = document.createElement("div")
+                    el.className = "electron-atom"
+
+                    el.style.left = x + "px"
+                    el.style.top = y + "px"
+
+                    electronLayer.appendChild(el)
+                }
+
+                sisa -= isi
+                if(sisa <= 0) break
+            }
+        }
+        /* ================= DRAG DROP ================= */
+        atom.ondragover=e=>e.preventDefault()
+
+        atom.ondrop = event => {
+            if(mode !== "struktur") return
+
+            let type = event.dataTransfer.getData("type")
+
+            let inputE = document.getElementById("e")
+
+            // VALIDASI DULU
+            if(type==="electron-bowl" && +inputE.value >= 18) return
+            if(type==="proton" && +p.value >= 18) return
+            if(type==="neutron" && +n.value >= 18) return
+
+            if(type === "proton"){
+                p.value++
+            }
+
+            if(type === "neutron"){
+                n.value++
+            }
+
+            if(type === "electron-bowl"){
+                inputE.value++ // 🔥 FIX DI SINI
+            }
+
+            if(window.draggedElement){
+                window.draggedElement.remove()
+            }
+
+            updatePartikel()
+        }
+        /* ================= EVENT ================= */
+        mass.oninput=()=> mode==="notasi" && updateNotasi()
+        atomic.oninput=()=> mode==="notasi" && updateNotasi()
+        charge.oninput=()=> mode==="notasi" && updateNotasi()
+
+        p.oninput=()=> mode==="partikel" && updatePartikel()
+        n.oninput=()=> mode==="partikel" && updatePartikel()
+        e.oninput=()=> mode==="partikel" && updatePartikel()
+
+        init()
+        controlInput() // 🔥 penting
+
+        
+        document.addEventListener("contextmenu", e => e.preventDefault());
+
+        document.onkeydown = function(e) {
+        if (e.keyCode == 123) return false; // F12
+        if (e.ctrlKey && e.shiftKey && e.keyCode == 73) return false; // Ctrl+Shift+I
+        if (e.ctrlKey && e.keyCode == 85) return false; // Ctrl+U
+        };
+        </script>
+    </body>
+>>>>>>> d366866b6d246d9d7e1079085a0cf87cfa57992f
 </html>

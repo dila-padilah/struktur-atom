@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -585,4 +586,593 @@
     
 </script>
 </body>
+=======
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            display: flex;
+            align-items: center;
+            padding: 15px, 30px;
+            background: linear-gradient(135deg, #0f2a44, #1c4f80);
+            color: white;
+            position: relative;
+            width: 100%;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .navbar::after{
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 3px;
+            width: 0;
+            background: white;
+            animation: lineGrow 2s forwards;
+        }
+
+        @keyframes lineGrow{
+            form{width:0}
+            to{width: 100%}
+        }
+
+        html, body {
+            height: 100%;
+        }
+        body {
+            background-color: white;
+            background-size: cover;
+            background-attachment: fixed;
+            height: 100hv;
+            overflow: hidden;
+            flex-direction: column;
+            display: flex;
+        }
+        header {
+            background-color: #1f4a85;
+            display: flex;
+            margin: 0;
+            padding: 0;
+            flex: 0 0 auto;
+            align-items: center;
+        }
+        .halaman {
+            align-items: center;
+            justify-content: right;
+            display: flex;
+        }
+        .logo {
+            width: 30%;
+            align-items: center;
+        }
+        .logo img{
+            width: 20%;
+        }
+        .nama {
+            padding: 5px;
+            font-family:Verdana, Geneva, Tahoma, sans-serif;
+            color:white;
+            font-size: 20px;
+            font-weight: 600;
+            margin: auto;
+            white-space: nowrap;
+            overflow: hidden;
+            width: 0;
+            animation: typing 3s steps(20, end) forwards, blink 0.8s infinite;
+        }
+
+        @keyframes typing{
+            form{width:0}
+            to{width: 70%;}
+        }
+
+        @keyframes blink{
+            50%{border-color: transparent;}
+        }
+
+        /* MENU */
+        .menu-container {
+            margin-left: auto;
+            text-align: right;
+            justify-content: right;
+            z-index: 9999;
+        }
+        .menu {
+            display: flex;
+            gap: 20px;
+            margin: 15px;
+            list-style: none;
+            margin-left: auto;
+            z-index: 9999;
+        }
+
+        /* LINK */
+        .menu a{
+            text-decoration: none;
+            color: white;
+            padding: 8px 18px;
+            border-radius: 25px;
+            transition: 0.3s;
+        }
+        
+        /* HOVER */
+        .menu a:hover{
+            background: white;
+            color: #0f2a44;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        /* HAMBURGER */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .menu-toggle span{
+            width: 25px;
+            height: 3px;
+            background: white;
+            border-radius: 2px;
+        }
+
+        
+        main {
+            background-image: url(bg_transparant.png);
+            background-size: cover;
+            background-attachment: fixed;
+            border-radius: 20px;
+            border: 3px solid #1f4a85;
+            margin: 15px;
+            flex: 1 1 auto;
+            overflow-y: auto;
+            scroll-behavior:smooth ;
+            min-height: 0;
+            padding: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+            line-height: 1.7;
+            animation: fade 0.6s ease;
+        }
+        @keyframes fade{
+            form{
+                opacity:0; 
+                transform:translateY(20px);
+            }
+            to{
+                opacity:1; 
+                transform:translateY(0);
+            }
+        }
+        main::-webkit-scrollbar {
+            width: 0;
+        }
+        main::-webkit-scrollbar-thumb {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 50px;
+        }
+        footer {
+            background-color: #1f4a85;
+            margin: -5px;
+            padding: 5px 0;
+            align-items: center;
+            text-align: center;
+            justify-content: center;
+            flex: 0 0 auto;
+        }
+        footer * {
+            margin-bottom: 0;
+            margin-top: 0;
+        }
+        .hakcipta {
+            margin: 0;
+        }
+        .sosial_media {
+            display: flex;
+            text-align: center;
+            justify-content: center;
+            margin: 0;
+            gap: 0;
+        }
+        .sosial_media a{
+            padding: 0;
+            margin: 0;
+        }
+        .sosial_media img {
+            width: 12%;
+            text-align: right;
+            cursor: pointer;
+            transition: 0.3s;
+            padding: 0;
+            margin: 0;
+        }
+        .sosial_media img:hover{
+            transform: scale(1.2);
+        }
+        .opsi{
+            display: flex;
+            align-items: center;
+            text-align: center;
+        }
+        .container{
+            width: 50%;
+        }
+        .container img{
+            width: 50%;
+            border: 5px solid white;
+            border-radius: 15px;
+            transition: transform 0.4s ease;
+            animation: floatImage 4s ease-in-out infinite;
+        }
+        .container img:hover{
+            transform: scale(1.05);
+        }
+        @keyframes floatImage {
+            0%{
+                transform: translateY(0px);
+            }
+            50%{
+                transform: translateY(-10px);
+            }
+            100%{
+                transform: translateY(0px);
+            }
+        }
+        .container h3{
+            font-weight: 600;
+            color: #0f2a44;
+            animation: fadeUp 1.5s ease;
+        }
+        @keyframes fadeUp{
+            from{
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to{
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .gambar{
+            width: 50%;
+            position: relative;
+            display: inline-block;
+            border-radius: 15px;
+            box-shadow: 0 0 20px #1c4f80;
+        }
+        .gambar img{
+            display: block;
+            width: 100%;
+        }
+        .gambar::before{
+            content: "";
+            position: absolute;
+            inset: -3px;
+            border-radius: 18px;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                #1f4a85,
+                #0f2a44,
+                #1c4f80,
+                transparent
+            );
+            background-size: 300% 300%;
+            animation: electricMove 3s linear infinite;
+            filter: blur(6px);
+            z-index: -1;
+        }
+        @keyframes electricMove{
+            0%{
+                background-position: 0% 50%;
+            }
+            100%{
+                background-position: 300% 50%;
+            }
+        }
+
+        .kimia {
+            display: none;
+            position: fixed;
+            z-index: 999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            backdrop-filter: blur(5px);
+        }
+        .kimia-box {
+            background: #ccc;
+            width: 90%;
+            max-width: 600px;
+            max-height: 80vh;
+            margin: 5% auto;
+            position: relative;
+            animation: fadeIn 0.3 ease;
+            border-radius: 20px;
+            padding: 15px 20px;
+            overflow: hidden;
+            overflow-y: auto;
+            scroll-behavior: smooth;
+        }
+        .kimia-box::-webkit-scrollbar{
+            width:6px;
+        }
+
+        .kimia-box::-webkit-scrollbar-thumb{
+            background: #1f4a85;
+            border-radius:10px;
+        }
+        @keyframes fadeIn {
+            from {opacity: 0; transform: translateY(-20px);}
+            to {opacity: 1; transform: translateY(0);}
+        }
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 28px;
+            cursor: pointer;
+            font-weight: 200s;
+        }
+
+        .close1 {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 28px;
+            cursor: pointer;
+            font-weight: 200s;
+        }
+
+        .judul {
+            background-color: #1f4a85;
+            align-items: center;
+            border-radius: 20px 20px 0 0 ;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        .line {
+            width: 100%;
+            height: 4px;
+            background-color: #1f4a85;
+            margin: 15px 0;
+        }
+        .box{
+            width: 95%;
+            margin-left: 20px;
+            overscroll-behavior: none;
+        }
+        .box::-webkit-scrollbar {
+            width: 0;
+            display: none;
+        }
+        .box::-webkit-scrollbar-thumb {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 50px;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px){
+            .menu {
+                position: absolute;
+                top: 70px;
+                right: 0;
+                background: #0f2a44;
+                width: 220px;
+                flex-direction: column;
+                text-align: center;
+                padding: 20px;
+                display: none;
+                border-radius: 0 0 10px 10px;
+            }
+
+            .menu li{
+                margin: 10px 0;
+            }
+
+            .menu-toggle{
+                display: flex;
+            }
+
+            .menu.active {
+                display: flex;
+            }
+            .opsi{
+                flex-direction: column;
+                align-items: center;
+                gap: 50px;
+            }
+            .container{
+                width: 100%;
+            }
+            .sosial_media img{
+                width: 20%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="halaman">
+                <div class="logo">
+                    <img src="icon-TP.png" alt="">
+                </div>
+                <div class="nama">
+                    <h3>TUJUAN PEMBELAJARAN</h3>
+                </div>
+            </div>
+            <div class="menu-toggle" id="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="menu-container">
+                <ul class="menu" id="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="materi.html">Materi</a></li>
+                    <li><a href="simulasi.html">Simulasi</a></li>
+                    <li><a href="Evaluasi.html">Evaluasi</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="opsi">
+            <div class="container">
+                <div class="gambar">
+                    <img src="pemahaman_kimia.png" class="pemahaman_kimia" style="cursor: pointer;">
+                </div>
+                <h3>Pemahaman Kimia</h3>
+            </div>
+            <div class="container">
+                <div class="gambar">
+                    <img src="keterampilan_proses.png" class="keterampilan_proses" style="cursor: pointer;">
+                </div>
+                <h3>Keterampilan Proses</h3>
+            </div>
+        </div>
+
+        
+        <div class="kimia" id="myKimia">
+            <div class="kimia-box">
+                <span class="close">&times;</span>
+                <div class="judul">
+                    <h2>PEMAHAMAN KIMIA</h2>  
+                    <div class="line"></div>  
+                </div>
+                <div class="box">
+                    <ol>
+                    <li>
+                        <strong>Memahami Struktur Atom</strong>
+                        <br>Menjelaskan struktur atom, termasuk komponen partikel subatomic (proton, neutron, dan electron) dan letaknya dalam atom
+                    </li>
+                    <li>
+                        <strong>Perkembangan Model Atom</strong>
+                        <br>Mendeskripsikan perkembangan model atom dari teori Dalton, Thomson, Rutherford, Bohr, hingga model mekanika kuantum (awan elektron)
+                    </li>
+                    <li>
+                        <strong>Notasi Unsur</strong>
+                        <br>Menentukan jumlah proton, electron, dan neutron berdasarkan notasi unsur (<sup>A</sup><sub>Z</sub>X), serta memhami konsep isotop, isobar, dan isoton
+                    </li>
+                    <li>
+                        <strong>Konfigurasi Elektron</strong>
+                        <br>Menerapkan konfigurasi electron (kulit atom/Bohr) untuk menentukan electron valensi dan posisi unsur dalam tabel periodik
+                    </li>
+                    <li>
+                        <strong>Struktur Atom dan Sifat Unsur</strong>
+                        <br>Menghubungkan struktur atom dengan sifat fisik dan kimia unsur, serta kaitannya dengan tabel periodic unsur
+                    </li>
+                </ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="kimia" id="myProses">
+            <div class="kimia-box">
+                <span class="close1">&times;</span>
+                <div class="judul">
+                    <h2>KETERAMPILAN PROSES</h2>  
+                    <div class="line"></div>  
+                </div>
+                <div class="box">
+                    <ul>
+                    <li>
+                        <strong>Mengamati & Memprediksi</strong>
+                        <br>Mengamati simulasi atau model atom untuk memahami struktur mikroskopis
+                    </li>
+                    <li>
+                        <strong>Memproses Data</strong>
+                        <br>Menggunakan informasi dari notasi unsur untuk menganalisis jumlah partikel subatomik
+                    </li>
+                    <li>
+                        <strong>Evaluasi</strong>
+                        <br>Mengevaluasi kelebihan dan kekurangan berbagai model atom dalam sejarah perkembangannya
+                    </li>
+                </ul>
+                </div>
+            </div>
+        </div>
+
+    </main>
+    <footer>
+        <div class="sosial_media">
+            <a href="mailto:dilapadilah414@gmail.com"><img src="icon-gmail.png" alt=""></a>
+            <a href="https://github.com/dila-padilah" target="_blank"><img src="icon-github.png" alt=""></a>
+            <a href="https://www.linkedin.com/in/dila-padilah" target="_blank"><img src="icon-linkdeln.png" alt=""></a>
+            <a href="https://x.com/DilaPadilah414" target="_blank"><img src="icon-twitter.png" alt=""></a>
+            <a href="https://www.tiktok.com/@pojok.belajar_" target="_blank"><img src="icon-tiktok.png" alt=""></a>
+        </div>
+        <div class="hakcipta">
+            <p>Copyright © 2026 Dila Padilah</p>
+        </div>
+    </footer>
+<script>
+    const toggle = document.getElementById("menu-toggle");
+    const menu = document.getElementById("nav-menu");
+    
+    toggle.addEventListener("click", () => {
+        menu.classList.toggle("active");
+    });
+
+    document.addEventListener("DOMContentLoaded", function() {
+        const kimia = document.getElementById("myKimia");
+        const openBtn = document.querySelectorAll(".pemahaman_kimia");
+        const closeBtn = document.querySelector(".close");
+        openBtn.forEach(function(btn){
+            btn.addEventListener("click",function() {
+                kimia.style.display = "flex";
+            })
+        })
+        closeBtn.addEventListener("click", function(){
+            kimia.style.display = "none" ;
+        })
+        window.addEventListener("click", function(e){
+            if (e.target === kimia){
+                kimia.style.display = "none" ;
+            }
+        })
+    })
+
+    document.addEventListener("DOMContentLoaded", function() {
+        const kimia = document.getElementById("myProses");
+        const openBtn = document.querySelectorAll(".keterampilan_proses");
+        const closeBtn = document.querySelector(".close1");
+        openBtn.forEach(function(btn){
+            btn.addEventListener("click",function() {
+                kimia.style.display = "flex";
+            })
+        })
+        closeBtn.addEventListener("click", function(){
+            kimia.style.display = "none" ;
+        })
+        window.addEventListener("click", function(e){
+            if (e.target === kimia){
+                kimia.style.display = "none" ;
+            }
+        })
+    })
+    
+</script>
+</body>
+>>>>>>> d366866b6d246d9d7e1079085a0cf87cfa57992f
 </html>

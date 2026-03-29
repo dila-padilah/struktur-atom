@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -313,4 +314,321 @@
     </script>
 
 </body>
+=======
+<!DOCTYPE html>
+<html lang="id">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sertifikat</title>
+
+    <link rel="stylesheet" href="sertifikat.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <style>
+        body{
+            margin:0;
+            font-family:Arial;
+            background:#eee;
+            display:flex;
+            flex-direction:column;
+            align-items:center;
+        }
+
+        .sertifikat{
+            position:relative;
+            width:1000px;
+            background:#f7f4ef;
+            padding:60px;
+            overflow:hidden;
+        }
+
+        /* isi */
+
+        .isi{
+            position:relative;
+            z-index:2;
+            text-align:center;
+        }
+
+        h1{
+            font-size:55px;
+            margin:0;
+            font-weight:bold;
+        }
+
+        h2{
+            margin:5px 0 20px 0;
+            letter-spacing:3px;
+        }
+
+        #namaSiswa{
+            font-size:38px;
+            margin:20px 0;
+            border-bottom:3px solid orange;
+            display:inline-block;
+            padding-bottom:5px;
+        }
+
+        table{
+            width:80%;
+            margin:auto;
+            margin-top:20px;
+            border-collapse:collapse;
+        }
+
+        th,td{
+            border:1px solid #555;
+            padding:10px;
+        }
+
+        .tanggal{
+            margin-top:40px;
+        }
+
+        .ttd{
+            margin-top:40px;
+        }
+
+        /* tombol */
+
+        .tombol{
+            margin:30px;
+        }
+
+        button{
+            padding:12px 25px;
+            font-size:16px;
+            margin:10px;
+            border:none;
+            background:#f2a400;
+            color:white;
+            border-radius:6px;
+            cursor:pointer;
+        }
+
+        button:hover{
+            opacity:0.8;
+        }
+
+        /* SHAPE DEKORASI */
+
+        .shape{
+            position:absolute;
+            border-radius:50%;
+        }
+
+        .shape1{
+            width:300px;
+            height:300px;
+            background:#1da9c3;
+            top:-120px;
+            left:-120px;
+        }
+
+        .shape2{
+            width:350px;
+            height:250px;
+            background:#f2a400;
+            top:-120px;
+            right:-120px;
+            border-radius:60%;
+        }
+
+        .shape3{
+            width:350px;
+            height:250px;
+            background:#1da9c3;
+            bottom:-150px;
+            right:-120px;
+            border-radius:60%;
+        }
+
+
+        /* PRINT MODE */
+
+        @media print{
+            body{
+                background:white;
+            }
+
+            .tombol{
+                display:none;
+            }
+
+            .sertifikat{
+                width:100%;
+                padding:40px;
+            }
+
+            .shape,
+            .dots{
+                display:block;
+            }
+
+        }
+
+        /* MOBILE */
+
+        .sertifikat{
+            width:90%;
+            max-width:1000px;
+            margin:auto;
+
+        }
+
+        table{
+           width:100%;
+        }
+
+        @media(max-width:768px){
+            h1{
+                font-size:32px;
+            }
+
+            #namaSiswa{
+                font-size:24px;
+            }
+
+            .sertifikat{
+                padding:25px;
+            }
+
+            table{
+                font-size:12px;
+            }
+
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="sertifikat">
+
+        <!-- dekorasi -->
+        <div class="shape shape1"></div>
+        <div class="shape shape2"></div>
+        <div class="shape shape3"></div>
+        <div class="dots dots1"></div>
+        <div class="dots dots2"></div>
+
+        <div class="isi">
+
+            <h1>SERTIFIKAT</h1>
+            <h2>KELULUSAN</h2>
+
+            <p class="teks">Sertifikat ini diberikan kepada</p>
+
+            <h3 id="namaSiswa"></h3>
+
+            <p>
+                Karena telah berhasil menyelesaikan materi 
+                <b>Struktur Atom</b> dengan skor : 
+                <b id="nilaiSiswa"></b>
+            </p>
+
+            <p>dengan rincian capaian pembelajaran sebagai berikut.</p>
+
+            <table>
+
+                <tr>
+                    <th>Materi</th>
+                    <th>Capaian</th>
+                </tr>
+
+                <tr>
+                    <td>Struktur Atom</td>
+                    <td>Memahami konsep atom</td>
+                </tr>
+
+                <tr>
+                    <td>Partikel Penyusun Atom</td>
+                    <td>Mengenal proton, neutron, elektron</td>
+                </tr>
+
+                <tr>
+                    <td>Konfigurasi Elektron</td>
+                    <td>Menentukan konfigurasi elektron</td>
+                </tr>
+
+                <tr>
+                    <td>Nomor Atom</td>
+                    <td>Menentukan nomor atom</td>
+                </tr>
+
+            </table>
+
+            <div class="signature">
+                <p class="tanggal" id="tanggal"></p>
+                <p>Developer Website</p>
+                <img src="tanda_tangan.png">
+                <h4>Dila Padilah</h4>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="tombol">
+
+        <button onclick="cetak()">Cetak Sertifikat</button>
+        <button onclick="home()">Kembali</button>
+
+    </div>
+
+    <script>
+    let nama = localStorage.getItem("nama")
+    let skor = localStorage.getItem("skor")
+    let tanggalData = localStorage.getItem("tanggalLulus")
+
+    document.getElementById("namaSiswa").innerText = nama
+    document.getElementById("nilaiSiswa").innerText = skor
+
+    if(tanggalData){
+
+    let tanggal = new Date(tanggalData)
+
+    let hari = tanggal.getDate().toString().padStart(2,"0")
+
+    let bulanList = [
+    "Januari","Februari","Maret","April","Mei","Juni",
+    "Juli","Agustus","September","Oktober","November","Desember"
+    ]
+
+    let bulan = bulanList[tanggal.getMonth()]
+
+    let tahun = tanggal.getFullYear()
+
+    let tanggalFormat = `${hari} ${bulan} ${tahun}`
+
+    document.getElementById("tanggal").innerText = tanggalFormat
+
+    }else{
+
+    document.getElementById("tanggal").innerText = new Date().toLocaleDateString("id-ID")
+
+    }
+
+
+
+    function cetak(){
+
+    window.print()
+
+    }
+
+    function home(){
+
+    window.location="index.html"
+
+    }
+    </script>
+
+</body>
+>>>>>>> d366866b6d246d9d7e1079085a0cf87cfa57992f
 </html>
