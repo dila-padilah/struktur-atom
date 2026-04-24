@@ -2,13 +2,14 @@
 <html>
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="https://font.googleapis.com/css2?family=Rubik+Spray+Paint&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Rubik+Spray+Paint&display=swap" rel="stylesheet">
         <title>Home</title>
         <style>
             body {
                 background-image: url(Background.png);
                 background-size: cover;
                 background-attachment: fixed;
+                font-family: 'Poppins', sans-serif;
             }
                 body::-webkit-scrollbar{
                 width:2px;
@@ -48,17 +49,18 @@
                 align-items: center;
                 justify-content: center;
                 font-size: clamp(15px, 6vw, 30px);
-                font-weight: bold;
-                margin: -10px;
-                padding: -10px;
-                -webkit-text-stroke: 2px #1f4a85;
-                text-shadow:
-                2px 2px 0 #800000,
-                4px 4px 8px rgba(0,0,0,0.3);
+                margin: 10px 0;
             }
+
             .Judul h1 {
                 color: #EEA694;
-                font-family: 'rubik spray paint', cursive;
+                font-family: 'Rubik Spray Paint', cursive;
+
+                text-shadow: 
+                    2px 2px 0 #1f4a85,
+                    4px 4px 10px rgba(0,0,0,0.4);
+
+                -webkit-text-stroke: 1px #1f4a85;
             }
             .Animasi {
                 display: flex;
@@ -70,7 +72,13 @@
                 width: 20%;
                 border-radius: 12px;
                 border: 2px solid #1f4a85;
+                transition: transform 0.4s ease;
             }
+
+            .Animasi img:hover {
+                transform: scale(1.05);
+            }
+            
             .Menu {
                 display: flex;
                 align-items: center;
@@ -83,64 +91,45 @@
             }
             .Tombol {
                 width: 80%;
-                margin:auto;
+                margin: 10px auto;
                 padding: 15px;
-                border: 1px solid #ccc;
                 display: flex;
-                background-color: #1f4a85;
+                background: linear-gradient(135deg, #1f4a85, #2d6cdf);
                 justify-content: center;
-                border-radius: 30px;
-                font-style: #ccc;
-                margin: 10px;
-                position: relative;
+                border-radius: 20px;
                 align-items: center;
                 cursor: pointer;
+                position: relative;
+                transition: all 0.3s ease;
             }
+
             .Tombol h3 {
                 color: #ccc;
                 font-size: clamp(8px, 6vw, 30px);
                 margin: auto;
             }
-            .Tombol::before {
-                content: "";
-                position: absolute;
-                inset: -3px;
-                border-radius: 12px;
-                background: linear-gradient(
-                    45deg,
-                    #ff00ff,
-                    #00ffff,
-                    #ff00ff
-                );
-                filter: blur(8px);
-                opacity: 0.8;
-                animation: glow 3s linear infinite;
-                z-index: -1;
-            }
-            @keyframes glow {
-                0% {filter: blur(6px) hue-rotate(0deg);}
-                50% {filter: blur(10px) hue-rotate(180deg);}
-                100% {filter: blur(6px) hue-rotate(360deg);}
-            }
             
             .Tombol img {
-                width: 10%;
-                height: 90%;
+                width: 35px;
+                height: 35px;
                 border-radius: 50%;
                 position: absolute;
                 left: 15px;
             }
             .Tombol:hover {
-                transform: translateY(-5px) scale(1.20);
-                box-shadow:
-                0 0 12px rgba(255, 0, 0, 0.6),
-                0 0 25px rgba(80, 0, 0, 0.3);
-                background: rgba(80, 0, 0, 0.8);
+                transform: translateY(-4px);
+                box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+                background: linear-gradient(135deg, #2d6cdf, #1f4a85);
             }
+            .Tombol h3 {
+                color: white;
+                font-size: clamp(12px, 4vw, 22px);
+                margin: auto;
+                transition: 0.3s;
+            }
+
             .Tombol:hover h3 {
-                color: yellow;
-                -webkit-text-stroke: 1px red;
-                font-weight: bold;
+                color: #ffe082;
             }
             .modal {
                 display: none;
@@ -154,7 +143,6 @@
                 backdrop-filter: blur(5px);
             }
             .modal-box {
-                background: #ccc;
                 width: 80%;
                 max-width: 600px;
                 max-height: 80vh;
@@ -166,6 +154,10 @@
                 overflow: hidden;
                 overflow-y: auto;
                 scroll-behavior: smooth;
+                background: rgba(255,255,255,0.9);
+                backdrop-filter: blur(10px);
+                border-radius: 20px;
+                padding: 20px;
             }
             .modal-box h2 {
                 margin-bottom: 15px;
@@ -289,6 +281,17 @@
                 cursor: pointer;
                 font-weight: 200s;
             }
+
+            .close, .close1, .close2 {
+                font-size: 24px;
+                cursor: pointer;
+                transition: 0.2s;
+            }
+
+            .close:hover, .close1:hover, .close2:hover {
+                color: red;
+            }
+
             .judul {
                 background-color: #1f4a85;
                 align-items: center;
@@ -373,7 +376,7 @@
 
             @media (max-width: 768px){
                 .Judul h1{
-                    font-size: 30px;
+                    font-size: 38px;
                 }
 
                 .Menu {
@@ -391,6 +394,10 @@
                 .Tombol {
                     width: 90%;
                 }
+                .Tombol h3 {
+                    font-size: 14px; /* 🔥 fix size biar aman */
+                    line-height: 1.3;
+                }
 
                 /* jarak gambar tengah */
                 .Animasi {
@@ -404,7 +411,11 @@
                 }
 
                 .left1, .left2, .right1{
-                    width: 8%;
+                    width: 10%;
+                }
+
+                .left2{
+                    top: 58px;
                 }
             }
         </style>
